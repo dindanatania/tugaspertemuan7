@@ -1,0 +1,50 @@
+package tugas7;
+
+import java.util.Random;
+
+public class Tugas7 {
+
+    public static void main(String[] args) {
+        StopWatch stopwatch = new StopWatch();
+        
+        //ARRAY
+        int i;
+        int size = 100000;
+        int[] arr = new int[size];
+        Random rdm = new Random();
+        
+        for(i=0; i<size; i++){
+            arr[i] = rdm.nextInt(100000);
+        }
+        stopwatch.start();
+        System.out.println("MULAI.....");
+        
+        selectionSort(arr);
+        
+        stopwatch.stop();
+        System.out.println("SELESAI.....");
+        
+        System.out.println("Waktu eksekusi: "+stopwatch.getElapsedTime()+ " milidetik");
+    }
+    
+    // ALGORITMA SELECTION SORT
+    public static void selectionSort(int[] arr){
+        int n = arr.length;
+        int i,j;
+        for(i = 0; i < n-1; i++){
+            int minIndex = i;
+            for(j = i+1; j < n; j++){
+                if(arr[j] < arr[minIndex]){
+                    minIndex = j;
+                }
+            }
+            int temp = arr[minIndex];
+            arr[minIndex] = arr[i];
+            arr[i] = temp;
+            
+            if(i % 1000 == 0){
+                System.out.println("Proses sorting: " + i);
+            }
+        }
+    }
+}
